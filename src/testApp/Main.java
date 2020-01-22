@@ -42,7 +42,7 @@ public class Main {
 		System.out.println("勇者の名前を入力してください");
         boolean check = true;
         while (check) {
-        	String heroName = scan.next();
+        	String heroName = scan.nextLine();
         	check = checkHeroName(heroName, h);
         }
 		return h;		
@@ -55,7 +55,7 @@ public class Main {
         System.out.println("魔王の名前を入力してください");
         boolean check = true;
         while (check) {
-        	String maouName = scan.next();
+        	String maouName = scan.nextLine();
         	check = checkMaouName(maouName, m);
         }
 		return m;
