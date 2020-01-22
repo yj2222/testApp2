@@ -19,21 +19,10 @@ public class Sword {
 		return successRate;
 	}
 
-	// Setter
-	public void setName(String name) {
+	void sword(String name, int dmg, int rate){
 		this.name = name;
-	}
-
-	public void setDmg(int dmg) {
 		this.dmg = dmg;
-	}
-
-	public void setSuccessRate(int successRate) {
-		this.successRate = successRate;
-	}
-
-	void sword(){
-
+		this.successRate = rate;
 	}
 
 }

@@ -25,6 +25,7 @@ public class Maou {
 		this.hp = hp;
 	}
 
+	// Normalアタックメソッド。確率は1/2に設定。
 	public void attack(Hero h) {
 
 		Random rand = new Random();
@@ -39,15 +40,22 @@ public class Maou {
 			System.out.println("ミス！" + name + "の攻撃は外れた・・・");
 		}
 		checkZero(h);
-		System.out.println(h.getName() + "の残りHP＝" + h.getHp());
-
+	}
+	
+	// Maouが進化時の爆風攻撃。回避不能。
+	public void stormAttack(Hero h) {
+		int heroHp = h.getHp() - 100;
+		h.setHp(heroHp);
+		System.out.println("爆風により、" + h.getName() + "は100のダメージを受けた！");
+		checkZero(h);
 	}
 
+	// HPが0以下にならないよう0チェックをする。
 	public void checkZero(Hero h) {
 		if(h.getHp() <= 0) {
 			h.setHp(0);
-//			System.out.println(h.getName() + "のHPが０になりました。");
 		}
+		System.out.println("＊＊＊＊＊＊＊＊＊＊" + h.getName() + "の残りHP＝" + h.getHp() + "＊＊＊＊＊＊＊＊＊＊");
 	}
 
 

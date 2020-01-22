@@ -35,42 +35,59 @@ public class Hero {
 		System.out.println(this.name + "は" + sw.getName() + "を装備した！");
 	}
 
+	// Maou攻撃時のメソッド。
 	public void attack(Maou m) {
 
-		Random rand = new Random();
-	    int i = rand.nextInt(100);
-		System.out.println("info:SwordRate=" + sw.getSuccessRate());
-	    System.out.println("info:RandomFlug=" + i);
+		// Randomな数字を取得。
+		int ramdomRate = ramdomRate();
 
-		if(sw.getSuccessRate() > i) {
+		if(sw.getSuccessRate() > ramdomRate) {
 			int maouHp = m.getHp() - sw.getDmg();
 			m.setHp(maouHp);
 			System.out.println(name + "は" + sw.getName() + "で" + m.getName() + "に" + sw.getDmg() + "のダメージを与えた！");
 		} else {
 			System.out.println("ミス！" + name + "の攻撃は外れた・・・");
 		}
-//		if(m.getHp() <= 0) m.setHp(0);
-		System.out.println(m.getName() + "の残りHP＝" + m.getHp());
+		checkZero(m);
 	}
 
+	// DaiMaou攻撃時のメソッド。
 	public void attack(DaiMaou dm) {
 
+		// Randomな数字を取得。
+		int ramdomRate = ramdomRate();
+
+		if(sw.getSuccessRate() > ramdomRate) {
+			// DaiMaouに攻撃時はダメージ半減。
+			int maouHp = dm.getHp() - (sw.getDmg() / 2);
+			dm.setHp(maouHp);
+			System.out.println(name + "は" + sw.getName() + "で" + dm.getName() + "に" + (sw.getDmg() / 2) + "のダメージを与えた！");
+		} else {
+			System.out.println("ミス！" + name + "の攻撃は外れた・・・");
+		}
+		checkZero(dm);
+		
+	}
+	
+	// Randomな数字を取得するメソッド。
+	public int ramdomRate() {
 		Random rand = new Random();
 	    int i = rand.nextInt(100);
 		System.out.println("info:SwordRate=" + sw.getSuccessRate());
 	    System.out.println("info:RandomFlug=" + i);
-
-		if(sw.getSuccessRate() > i) {
-			int maouHp = dm.getHp() - sw.getDmg();
-			dm.setHp(maouHp);
-			System.out.println(name + "は" + sw.getName() + "で" + dm.getName() + "に" + sw.getDmg() + "のダメージを与えた！");
-		} else {
-			System.out.println("ミス！" + name + "の攻撃は外れた・・・");
-		}
-		if(dm.getHp() <= 0) dm.setHp(0);
-		System.out.println(dm.getName() + "の残りHP＝" + dm.getHp());
+		return i;		
 	}
 
-
+	// HPが0以下にならないよう0チェックをする。
+	public void checkZero(Maou m) {
+		if(m.getHp() <= 0) m.setHp(0);
+		System.out.println("＊＊＊＊＊＊＊＊＊＊" + m.getName() + "の残りHP＝" + m.getHp() + "＊＊＊＊＊＊＊＊＊＊");
+	}
+	
+	// HPが0以下にならないよう0チェックをする。こっちは大魔王。受け取る方が違うので別メソッドにしました。
+	public void checkZero(DaiMaou dm) {
+		if(dm.getHp() <= 0) dm.setHp(0);
+		System.out.println("＊＊＊＊＊＊＊＊＊＊" + dm.getName() + "の残りHP＝" + dm.getHp() + "＊＊＊＊＊＊＊＊＊＊");
+	}
 
 }
